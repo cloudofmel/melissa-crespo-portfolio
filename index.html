@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa | Portfolio</title>
+    <meta name="description" content="Portafolio profesional de Melissa - Product Marketing, Brand Management y Datos.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --font-primary: 'Inter', sans-serif;
+            --bg-color: #FFFFFF;
+            --bg-secondary: #F7F7F8;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+            --accent-blue: #0A2540;
+            --accent-green: #2E8B57;
+            --border-color: #EAEAEA;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --bg-secondary: #111111;
+            --text-primary: #F5F5F7;
+            --text-secondary: #A1A1A6;
+            --accent-blue: #5480D6;
+            --border-color: #333333;
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; }
+        h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        p { color: var(--text-secondary); font-weight: 400; }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--bg-color), 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .lang-select {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.3rem;
+            border-radius: 6px;
+            font-family: var(--font-primary);
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-color);
+            border: 1px solid var(--text-primary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-primary:hover { opacity: 0.8; }
+        .btn-secondary:hover { background-color: var(--bg-secondary); }
+
+        /* Hero */
+        .hero {
+            padding-top: 12rem;
+            padding-bottom: 6rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Cards (Experience, Projects, Skills) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            z-index: 2;
+            color: var(--text-primary);
+        }
+
+        /* Counters */
+        .counters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .counter-num {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Behind the portfolio */
+        .behind-portfolio {
+            text-align: center;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .hero-btns { flex-direction: column; }
+            .counters { grid-template-columns: repeat(2, 1fr); }
+            .timeline { flex-direction: column; gap: 1rem; }
+            .timeline::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-content">
+            <div style="font-weight: 600;">Melissa.</div>
+            <div class="nav-links">
+                <a href="#about" data-i18n="nav_about">Sobre mí</a>
+                <a href="#experience" data-i18n="nav_experience">Experiencia</a>
+                <a href="#projects" data-i18n="nav_projects">Proyectos</a>
+                <a href="#skills" data-i18n="nav_skills">Skills</a>
+            </div>
+            <div class="controls">
+                <select class="lang-select" id="langToggle">
+                    <option value="es">🇵🇪 ES</option>
+                    <option value="en">🇺🇸 EN</option>
+                </select>
+                <button class="btn-icon" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero container reveal">
+        <h1 data-i18n="hero_title">Hola 👋<br>Soy Melissa.</h1>
+        <p data-i18n="hero_subtitle">Construyo experiencias donde el marketing, la tecnología y los datos generan valor para las personas.</p>
+        <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary" data-i18n="btn_projects">Ver proyectos</a>
+            <a href="CV_Melissa_ES.pdf" id="cvBtn" class="btn btn-secondary" target="_blank" data-i18n="btn_cv">Descargar CV</a>
+            <a href="#" class="btn btn-secondary">LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- About & Timeline -->
+    <section id="about" class="container reveal">
+        <h2 data-i18n="about_title">Sobre mí</h2>
+        <p data-i18n="about_text" style="max-width: 800px; margin-bottom: 2rem;">
+            Estudiante de Gestión Empresarial en la PUCP con especialización en Marketing. Me apasiona entender al consumidor y utilizar datos para tomar decisiones estratégicas. Mi diferencial radica en combinar la visión de negocio con el análisis de datos, marketing digital y herramientas de Inteligencia Artificial.
+        </p>
+
+        <div class="timeline">
+            <div class="timeline-item">York University</div>
+            <div class="timeline-item">Guía PUCP</div>
+            <div class="timeline-item">Ripley</div>
+            <div class="timeline-item">PUC Rio</div>
+            <div class="timeline-item" style="border-color: var(--text-primary); font-weight: 600;" data-i18n="timeline_now">Actualmente</div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="container reveal">
+        <h2 data-i18n="exp_title">Experiencia</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Ripley Perú</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Practicante de E-commerce</p>
+                <p data-i18n="exp_ripley_desc">Participación en análisis de performance, creación de dashboards, optimización SEO y presentaciones a gerencias con equipos de Perú y Chile.</p>
+                <div class="tags">
+                    <span class="tag">GA4</span>
+                    <span class="tag">BigQuery</span>
+                    <span class="tag">Looker Studio</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Guía PUCP</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Creadora de Contenido</p>
+                <p data-i18n="exp_pucp_desc">Desarrollo de contenido institucional y estrategias de storytelling para redes sociales, logrando altas visualizaciones en campañas universitarias.</p>
+                <div class="tags">
+                    <span class="tag">Marketing Digital</span>
+                    <span class="tag">Storytelling</span>
+                    <span class="tag">Branding</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="projects" class="container reveal">
+        <h2 data-i18n="proj_title">Featured Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Proyecto Macaccino (Nestlé)</h3>
+                <p data-i18n="proj_maca_desc">Lanzamiento del primer Ready To Drink de Nescafé con maca peruana. Plan de marketing integral, desde investigación hasta finanzas y packaging.</p>
+                <div class="tags">
+                    <span class="tag">Business</span>
+                    <span class="tag">Marketing Plan</span>
+                    <span class="tag">Forecasting</span>
+                </div>
+                <a href="/projects/macaccino" style="display: inline-block; margin-top: 1.5rem; font-weight: 500; text-decoration: underline;" data-i18n="btn_view_case">Ver caso</a>
+            </div>
+            <div class="card">
+                <h3>Landing Page Italia</h3>
+                <p data-i18n="proj_italia_desc">Desarrollo de una landing page orientada al consumidor italiano utilizando código e IA generativa para video, guion y locución.</p>
+                <div class="tags">
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">IA</span>
+                    <span class="tag">International Marketing</span>
+                </div>
+                <a href="/projects/italia" style="display: inline-block; margin-top: 1.5rem; font-weight: 500; text-decoration: underline;" data-i18n="btn_view_case">Ver caso</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counters -->
+    <section class="container reveal" style="padding: 3rem 0;">
+        <div class="counters">
+            <div>
+                <div class="counter-num">145+</div>
+                <div class="counter-label" data-i18n="count_keys">Keywords analizadas</div>
+            </div>
+            <div>
+                <div class="counter-num">7+</div>
+                <div class="counter-label" data-i18n="count_proj">Proyectos</div>
+            </div>
+            <div>
+                <div class="counter-num">3</div>
+                <div class="counter-label" data-i18n="count_intl">Exp. internacionales</div>
+            </div>
+            <div>
+                <div class="counter-num">4</div>
+                <div class="counter-label" data-i18n="count_ai">Herramientas IA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Learning -->
+    <section id="skills" class="container reveal">
+        <h2 data-i18n="skills_title">Herramientas & Conocimientos</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="font-size: 1rem;">Marketing & Business</h3>
+                <p style="font-size: 0.85rem;">Product Marketing, Consumer Insights, E-commerce, Branding, Storytelling.</p>
+            </div>
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="font-size: 1rem;">Analytics</h3>
+                <p style="font-size: 0.85rem;">SQL, Python, Excel, Power BI, Looker Studio, GA4, BigQuery.</p>
+            </div>
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="font-size: 1rem;">Tech & AI</h3>
+                <p style="font-size: 0.85rem;">HTML, CSS, ChatGPT, Gemini, Claude, NotebookLM.</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 4rem; margin-bottom: 1.5rem; font-size: 1.25rem;" data-i18n="learning_title">Actualmente aprendiendo</h3>
+        <div class="tags">
+            <span class="tag" style="background: var(--bg-secondary);">IA aplicada al Marketing</span>
+            <span class="tag" style="background: var(--bg-secondary);">Product Marketing</span>
+            <span class="tag" style="background: var(--bg-secondary);">UX</span>
+            <span class="tag" style="background: var(--bg-secondary);">Automatización</span>
+        </div>
+    </section>
+
+    <!-- Behind Portfolio -->
+    <section class="container reveal">
+        <div class="behind-portfolio">
+            <h2 data-i18n="behind_title">Behind this Portfolio</h2>
+            <p data-i18n="behind_text" style="max-width: 700px; margin: 0 auto;">
+                Este portfolio fue diseñado por mí y desarrollado utilizando HTML, CSS y JavaScript con apoyo de herramientas de Inteligencia Artificial como Gemini y ChatGPT para acelerar el proceso de desarrollo y experimentar con nuevas tecnologías.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© <span id="year"></span> Melissa. <span data-i18n="footer_rights">Todos los derechos reservados.</span></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                htmlElement.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '🌞';
+            } else {
+                htmlElement.setAttribute('data-theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
+        });
+
+        // 4. i18n Translation Logic
+        const translations = {
+            es: {
+                nav_about: "Sobre mí",
+                nav_experience: "Experiencia",
+                nav_projects: "Proyectos",
+                nav_skills: "Skills",
+                hero_title: "Hola 👋<br>Soy Melissa.",
+                hero_subtitle: "Construyo experiencias donde el marketing, la tecnología y los datos generan valor para las personas.",
+                btn_projects: "Ver proyectos",
+                btn_cv: "Descargar CV",
+                cv_file: "CV_Melissa_ES.pdf",
+                about_title: "Sobre mí",
+                about_text: "Estudiante de Gestión Empresarial en la PUCP con especialización en Marketing. Me apasiona entender al consumidor y utilizar datos para tomar decisiones estratégicas. Mi diferencial radica en combinar la visión de negocio con el análisis de datos, marketing digital y herramientas de Inteligencia Artificial.",
+                timeline_now: "Actualmente",
+                exp_title: "Experiencia",
+                exp_ripley_desc: "Participación en análisis de performance, creación de dashboards, optimización SEO y presentaciones a gerencias con equipos de Perú y Chile.",
+                exp_pucp_desc: "Desarrollo de contenido institucional y estrategias de storytelling para redes sociales, logrando altas visualizaciones en campañas universitarias.",
+                proj_title: "Featured Projects",
+                proj_maca_desc: "Lanzamiento del primer Ready To Drink de Nescafé con maca peruana. Plan de marketing integral, desde investigación hasta finanzas y packaging.",
+                proj_italia_desc: "Desarrollo de una landing page orientada al consumidor italiano utilizando código e IA generativa para video, guion y locución.",
+                btn_view_case: "Ver caso",
+                count_keys: "Keywords analizadas",
+                count_proj: "Proyectos",
+                count_intl: "Exp. internacionales",
+                count_ai: "Herramientas IA",
+                skills_title: "Herramientas & Conocimientos",
+                learning_title: "Actualmente aprendiendo",
+                behind_title: "Behind this Portfolio",
+                behind_text: "Este portfolio fue diseñado por mí y desarrollado utilizando HTML, CSS y JavaScript con apoyo de herramientas de Inteligencia Artificial como Gemini y ChatGPT para acelerar el proceso de desarrollo y experimentar con nuevas tecnologías.",
+                footer_rights: "Todos los derechos reservados."
+            },
+            en: {
+                nav_about: "About",
+                nav_experience: "Experience",
+                nav_projects: "Projects",
+                nav_skills: "Skills",
+                hero_title: "Hi 👋<br>I'm Melissa.",
+                hero_subtitle: "I build experiences where marketing, technology, and data create value for people.",
+                btn_projects: "View Projects",
+                btn_cv: "Download Resume",
+                cv_file: "Resume_Melissa_EN.pdf",
+                about_title: "About me",
+                about_text: "Business Management student at PUCP specializing in Marketing. I am passionate about understanding consumers and using data for strategic decision-making. My edge lies in combining business vision with data analytics, digital marketing, and AI tools.",
+                timeline_now: "Currently",
+                exp_title: "Experience",
+                exp_ripley_desc: "Participated in performance analysis, dashboard creation, SEO optimization, and management presentations with teams from Peru and Chile.",
+                exp_pucp_desc: "Developed institutional content and storytelling strategies for social media, achieving high views in university campaigns.",
+                proj_title: "Featured Projects",
+                proj_maca_desc: "Launch of Nescafé's first Ready To Drink with Peruvian maca. Comprehensive marketing plan, from research to finance and packaging.",
+                proj_italia_desc: "Development of a landing page targeting the Italian consumer using code and generative AI for video, script, and voiceover.",
+                btn_view_case: "View Case",
+                count_keys: "Keywords analyzed",
+                count_proj: "Projects",
+                count_intl: "Intl. Experiences",
+                count_ai: "AI Tools",
+                skills_title: "Tools & Knowledge",
+                learning_title: "Currently Learning",
+                behind_title: "Behind this Portfolio",
+                behind_text: "This portfolio was designed by me and developed using HTML, CSS, and JavaScript with the support of Artificial Intelligence tools like Gemini and ChatGPT to accelerate the development process and experiment with new technologies.",
+                footer_rights: "All rights reserved."
+            }
+        };
+
+        const langToggle = document.getElementById('langToggle');
+        const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+        const cvBtn = document.getElementById('cvBtn');
+
+        langToggle.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            
+            // Translate texts
+            elementsToTranslate.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update CV href
+            cvBtn.href = translations[lang]['cv_file'];
+        });
+
+    </script>
+</body>
+</html>
