@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa Crespo | E-commerce & Data Strategy</title>
+    
+    <!-- Tipografía Inter (Estilo limpio y moderno) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563eb', // Azul vibrante de tu referencia
+                            dark: '#0f172a', // Slate 900 para textos principales
+                            gray: '#475569', // Slate 600 para párrafos
+                            light: '#f8fafc', // Fondo muy sutil
+                            badgeBg: '#fef3c7', // Fondo amarillento del badge
+                            badgeText: '#b45309' // Texto del badge
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+
+        /* Toggle de Idioma Personalizado (Estilo Píldora) */
+        .lang-toggle-container {
+            position: relative;
+            width: 140px;
+            height: 48px;
+            background-color: #f1f5f9;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            padding: 4px;
+        }
+        .lang-toggle-slider {
+            position: absolute;
+            width: 50%;
+            height: calc(100% - 8px);
+            background-color: #0f172a;
+            border-radius: 9999px;
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            z-index: 1;
+        }
+        .lang-toggle-container.es .lang-toggle-slider {
+            transform: translateX(0);
+        }
+        .lang-toggle-container.en .lang-toggle-slider {
+            transform: translateX(100%);
+        }
+        .lang-option {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        .lang-toggle-container.es .lang-es { color: #ffffff; }
+        .lang-toggle-container.es .lang-en { color: #0f172a; }
+        .lang-toggle-container.en .lang-en { color: #ffffff; }
+        .lang-toggle-container.en .lang-es { color: #0f172a; }
+
+        /* Ocultar elementos según idioma */
+        html[lang="es"] .content-en { display: none !important; }
+        html[lang="en"] .content-es { display: none !important; }
+
+        /* Línea de tiempo horizontal */
+        .timeline-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+            padding-bottom: 2rem;
+            padding-top: 1rem;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 24px; /* Centro del nodo */
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        .timeline-node {
+            position: relative;
+            z-index: 1;
+            scroll-snap-align: center;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .timeline-pill {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: #0f172a;
+            transition: all 0.3s;
+        }
+        .timeline-pill.active {
+            border-color: #0f172a;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-brand-blue selection:text-white">
+
+    <nav class="w-full py-6 px-6 md:px-12 flex justify-end items-center max-w-7xl mx-auto">
+        <div class="lang-toggle-container es" id="lang-switch" onclick="toggleLanguage()">
+            <div class="lang-toggle-slider"></div>
+            <div class="lang-option lang-es">ES ES</div>
+            <div class="lang-option lang-en">EN EN</div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 pt-12 pb-24 text-center">
+        
+        <!-- Badge -->
+        <div class="inline-block bg-brand-badgeBg text-brand-badgeText font-bold px-4 py-1.5 rounded-full text-sm mb-8 shadow-sm">
+            Top 10% Décimo Superior PUCP
+        </div>
+
+        <!-- Headline Principal -->
+        <h1 class="text-5xl md:text-7xl font-black text-brand-dark leading-tight tracking-tight mb-8">
+            <span class="content-es">Impulsando el <span class="text-brand-blue">E-commerce</span> a través de <span class="text-brand-blue">datos</span> y estrategia.</span>
+            <span class="content-en">Driving <span class="text-brand-blue">E-commerce</span> through <span class="text-brand-blue">data</span> and strategy.</span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-lg md:text-xl text-brand-gray max-w-3xl mx-auto mb-12 leading-relaxed">
+            <span class="content-es">Soy <strong>Melissa Crespo</strong>, estudiante de Gestión y Alta Dirección. Combino creatividad con análisis de datos (Python, GA4) para optimizar la experiencia de usuario y la conversión.</span>
+            <span class="content-en">I'm <strong>Melissa Crespo</strong>, Management and Leadership student. I combine creativity with data analysis (Python, GA4) to optimize user experience and conversion rates.</span>
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+            <!-- Botón Proyectos -->
+            <a href="#proyectos" class="flex items-center gap-2 bg-brand-dark text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-black transition-colors shadow-md">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                <span class="content-es">Ver proyectos</span>
+                <span class="content-en">View projects</span>
+            </a>
+            
+            <!-- Botón CV -->
+            <a href="#" class="flex items-center gap-2 bg-white text-brand-dark border border-gray-200 px-8 py-3.5 rounded-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all shadow-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <span class="content-es">Descargar CV</span>
+                <span class="content-en">Download CV</span>
+            </a>
+            
+            <!-- Botón LinkedIn -->
+            <a href="https://www.linkedin.com/in/melissacrespobar/" target="_blank" class="flex items-center gap-2 bg-white text-brand-dark border border-gray-200 px-8 py-3.5 rounded-lg font-semibold hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all shadow-sm">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.26c-.96 0-1.74-.78-1.74-1.74s.78-1.74 1.74-1.74 1.74.78 1.74 1.74-.78 1.74-1.74 1.74zm12.5 12.26h-3v-5.59c0-1.33-1.33-1.33-1.33 0v5.59h-3v-11h3v1.92c.62-1.07 1.83-1.92 3-1.92 2.21 0 4 1.79 4 4v7z"/></svg>
+                LinkedIn
+            </a>
+        </div>
+    </main>
+
+    <section class="py-12 bg-brand-light border-y border-gray-100 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-8 text-center content-es">Trayectoria Profesional</h2>
+            <h2 class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-8 text-center content-en">Professional Journey</h2>
+            
+            <div class="relative mt-8">
+                <!-- Línea conectora -->
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-container">
+                    
+                    <!-- Nodo 1 -->
+                    <div class="timeline-node">
+                        <div class="timeline-pill">MEPA Perú</div>
+                        <p class="mt-4 text-xs font-semibold text-brand-dark">Asistente Comercial</p>
+                        <p class="text-[10px] text-gray-500 uppercase mt-1">Abr 2023 - Ene 2024</p>
+                    </div>
+
+                    <!-- Nodo 2 -->
+                    <div class="timeline-node">
+                        <div class="timeline-pill">Admisión PUCP</div>
+                        <p class="mt-4 text-xs font-semibold text-brand-dark">Apoyo Administrativo</p>
+                        <p class="text-[10px] text-gray-500 uppercase mt-1">Mar 2024 - Feb 2025</p>
+                    </div>
+
+                    <!-- Nodo 3 -->
+                    <div class="timeline-node">
+                        <div class="timeline-pill">York University</div>
+                        <p class="mt-4 text-xs font-semibold text-brand-dark">Business & Marketing</p>
+                        <p class="text-[10px] text-gray-500 uppercase mt-1">Jul 2024 - Ago 2024</p>
+                    </div>
+
+                    <!-- Nodo 4 (Activo) -->
+                    <div class="timeline-node">
+                        <div class="timeline-pill active">Ripley</div>
+                        <p class="mt-4 text-xs font-bold text-brand-blue">Practicante E-commerce</p>
+                        <p class="text-[10px] text-brand-blue uppercase mt-1">Jul 2025 - Actualidad</p>
+                    </div>
+                    
+                    <!-- Nodo 5 (Futuro/Proyección) -->
+                    <div class="timeline-node opacity-50">
+                        <div class="timeline-pill">PUC Rio</div>
+                        <p class="mt-4 text-xs font-semibold text-brand-dark">Intercambio Académico</p>
+                        <p class="text-[10px] text-gray-500 uppercase mt-1">Próximamente</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-4">
+                <span class="content-es">Evidencias & <span class="text-brand-blue">Proyectos</span></span>
+                <span class="content-en">Evidence & <span class="text-brand-blue">Projects</span></span>
+            </h2>
+            <p class="text-gray-500 text-lg max-w-2xl">
+                <span class="content-es">Gestión estratégica, documentación técnica y estandarización de procesos desarrollados durante mi experiencia profesional.</span>
+                <span class="content-en">Strategic management, technical documentation, and process standardization developed during my professional experience.</span>
+            </p>
+        </div>
+
+        <div class="space-y-12">
+            
+            <!-- GUÍA 1: Analytics & Datos -->
+            <div class="flex flex-col lg:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <!-- Visual Abstrato (Para no mostrar info sensible) -->
+                <div class="lg:w-2/5 bg-[#f8fafc] p-8 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-gray-200 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#2563eb 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    <div class="relative z-10 w-full">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 mb-4 transform -rotate-2">
+                            <div class="h-2 w-1/3 bg-blue-100 rounded mb-2"></div>
+                            <div class="h-2 w-full bg-gray-100 rounded mb-1"></div>
+                            <div class="h-2 w-4/5 bg-gray-100 rounded"></div>
+                            <div class="mt-4 flex gap-2">
+                                <span class="text-[10px] font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded">GA4</span>
+                                <span class="text-[10px] font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded">Looker</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 transform translate-x-4 rotate-1">
+                            <div class="flex justify-between items-end mb-4">
+                                <div class="w-12 h-12 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"></div>
+                                <span class="text-2xl font-black text-slate-800">SQL</span>
+                            </div>
+                            <div class="h-2 w-full bg-gray-100 rounded mb-1"></div>
+                            <div class="h-2 w-2/3 bg-gray-100 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contenido Técnico -->
+                <div class="lg:w-3/5 p-8 md:p-12">
+                    <div class="text-xs font-bold text-brand-blue uppercase tracking-widest mb-2">Ripley Perú - 2025</div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">
+                        <span class="content-es">Manual Estratégico: Data & Analytics (GA4, Looker, SQL)</span>
+                        <span class="content-en">Strategic Manual: Data & Analytics (GA4, Looker, SQL)</span>
+                    </h3>
+                    <p class="text-brand-gray leading-relaxed mb-6">
+                        <span class="content-es">Desarrollo integral de un documento técnico para la estandarización analítica del equipo E-commerce. Facilita la autonomía en la toma de decisiones basada en datos para nuevos ingresos.</span>
+                        <span class="content-en">Comprehensive development of a technical document for the analytical standardization of the E-commerce team. Facilitates autonomy in data-driven decision making for new hires.</span>
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-sm text-brand-dark content-es">Mapeo del Funnel E-commerce (Sesiones, Carro Neto, Checkout, Conversión) en GA4 y Looker Studio.</span>
+                            <span class="text-sm text-brand-dark content-en">Mapping of the E-commerce Funnel (Sessions, Net Cart, Checkout, Conversion) in GA4 and Looker Studio.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-sm text-brand-dark content-es">Estructuración de queries relacionales en SQL Server para la extracción de catálogos maestros y atributos (SKU Padre/Hijo).</span>
+                            <span class="text-sm text-brand-dark content-en">Structuring relational queries in SQL Server for the extraction of master catalogs and attributes.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-sm text-brand-dark content-es">Documentación de metodologías de QA usando extensiones de Debugging.</span>
+                            <span class="text-sm text-brand-dark content-en">Documentation of QA methodologies using Debugging extensions.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GUÍA 2: Navegación UX -->
+            <div class="flex flex-col lg:flex-row-reverse bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <!-- Visual Abstrato -->
+                <div class="lg:w-2/5 bg-[#0f172a] p-8 flex items-center justify-center border-b lg:border-b-0 lg:border-l border-gray-200 relative overflow-hidden">
+                    <div class="relative z-10 w-full max-w-[200px] mx-auto border-[6px] border-slate-700 rounded-3xl h-[350px] bg-white flex flex-col shadow-2xl">
+                        <div class="h-6 w-full bg-slate-100 rounded-t-2xl flex items-center justify-center">
+                            <div class="w-10 h-1.5 bg-slate-300 rounded-full"></div>
+                        </div>
+                        <div class="p-4 flex-1">
+                            <div class="flex gap-2 mb-4">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full"></div>
+                                <div class="w-8 h-8 bg-purple-100 rounded-full"></div>
+                                <div class="w-8 h-8 bg-green-100 rounded-full"></div>
+                            </div>
+                            <div class="h-24 bg-slate-100 rounded-lg mb-4 flex items-center justify-center">
+                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Carrusel Up-Sell</span>
+                            </div>
+                            <div class="h-10 bg-brand-blue rounded-lg w-full mt-auto flex items-center justify-center text-white text-[10px] font-bold">Comprar</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contenido Técnico -->
+                <div class="lg:w-3/5 p-8 md:p-12">
+                    <div class="text-xs font-bold text-brand-blue uppercase tracking-widest mb-2">Ripley Perú - 2025</div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">
+                        <span class="content-es">Optimización Operativa: Navegación UX & App Performance</span>
+                        <span class="content-en">Operational Optimization: UX Navigation & App Performance</span>
+                    </h3>
+                    <p class="text-brand-gray leading-relaxed mb-6">
+                        <span class="content-es">Guía integral de procesos para la gestión y actualización visual de la plataforma (Web/App). Alinea a los equipos comerciales, SEO y Performance en la ejecución de cambios de interfaz.</span>
+                        <span class="content-en">Comprehensive process guide for the management and visual update of the platform (Web/App). Aligns commercial, SEO, and Performance teams.</span>
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-sm text-brand-dark content-es">Definición de jerarquías para emblemas comerciales (Cyber, Despacho, Cuotas) y su impacto visual.</span>
+                            <span class="text-sm text-brand-dark content-en">Definition of hierarchies for commercial badges and their visual impact.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-sm text-brand-dark content-es">Protocolos de configuración para Carruseles de Cross-Selling ("Llévalos juntos") mediante Rcenter.</span>
+                            <span class="text-sm text-brand-dark content-en">Configuration protocols for Cross-Selling Carousels via Rcenter.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-sm text-brand-dark content-es">Gestión de Quality Assurance (QA) de nuevas versiones de la App usando TestFlight (iOS) y Beta Testing (Android).</span>
+                            <span class="text-sm text-brand-dark content-en">Quality Assurance (QA) management of new App versions using TestFlight.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PROYECTO UNIVERSITARIO: Macaccino -->
+            <div class="flex flex-col lg:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <!-- Visual -->
+                <div class="lg:w-2/5 bg-[#fef3c7] p-8 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-gray-200">
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">☕</div>
+                        <h4 class="font-black text-2xl text-amber-900">Macaccino</h4>
+                        <p class="text-amber-700 font-medium text-sm mt-1">Ready-to-drink</p>
+                    </div>
+                </div>
+                
+                <!-- Contenido Técnico -->
+                <div class="lg:w-3/5 p-8 md:p-12">
+                    <div class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-2">PUCP x Nestlé - 2024</div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4">
+                        <span class="content-es">Lanzamiento Go-To-Market: Macaccino</span>
+                        <span class="content-en">Go-To-Market Launch: Macaccino</span>
+                    </h3>
+                    <p class="text-brand-gray leading-relaxed mb-6">
+                        <span class="content-es">Plan de marketing desarrollado bajo calificación perfecta (20/20). Conceptualización del primer producto "ready-to-drink" combinando el prestigio de Nescafé con las propiedades energéticas de la maca peruana.</span>
+                        <span class="content-en">Marketing plan developed with a perfect score (20/20). Conceptualization of the first "ready-to-drink" product combining Nescafé's prestige with Peruvian maca.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 text-xs font-bold px-3 py-1 rounded">Estudio de Mercado</span>
+                        <span class="bg-gray-100 text-gray-700 text-xs font-bold px-3 py-1 rounded">KPIs SMART</span>
+                        <span class="bg-gray-100 text-gray-700 text-xs font-bold px-3 py-1 rounded">Pronóstico de Ventas</span>
+                        <span class="bg-gray-100 text-gray-700 text-xs font-bold px-3 py-1 rounded">Análisis Financiero</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark text-white py-12 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h4 class="font-black text-xl mb-1">Melissa Crespo</h4>
+                <p class="text-gray-400 text-sm">E-commerce & Data Strategy</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="mailto:Melissa.crespo@pucp.edu.pe" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Melissa.crespo@pucp.edu.pe</a>
+                <a href="tel:+51914111323" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">+51 914 111 323</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function toggleLanguage() {
+            const toggleContainer = document.getElementById('lang-switch');
+            const htmlTag = document.documentElement;
+            
+            if (toggleContainer.classList.contains('es')) {
+                // Cambiar a Inglés
+                toggleContainer.classList.remove('es');
+                toggleContainer.classList.add('en');
+                htmlTag.setAttribute('lang', 'en');
+            } else {
+                // Cambiar a Español
+                toggleContainer.classList.remove('en');
+                toggleContainer.classList.add('es');
+                htmlTag.setAttribute('lang', 'es');
+            }
+        }
+    </script>
+</body>
+</html>
