@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa Crespo | Marketing & E-commerce</title>
+    
+    <!-- Tipografía Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        dark: '#020617',
+                        softDark: '#0f172a',
+                        cardDark: '#1e293b',
+                        brand: {
+                            blue: '#2563eb',
+                            teal: '#2dd4bf',
+                            pink: '#ec4899',
+                            orange: '#f97316'
+                        }
+                    },
+                    letterSpacing: {
+                        tighter: '-.04em',
+                        tight: '-.02em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Degradados para palabras clave */
+        .text-gradient-strategy {
+            background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-data {
+            background: linear-gradient(90deg, #2dd4bf 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-creative {
+            background: linear-gradient(90deg, #ec4899 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-experiences {
+            background: linear-gradient(90deg, #0ea5e9 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Toggle de Idioma (Minimalista sin banderas) */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            background-color: #f1f5f9;
+            border-radius: 999px;
+            padding: 4px;
+            cursor: pointer;
+            width: 160px;
+            position: relative;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+        .dark .lang-toggle {
+            background-color: #1e293b;
+        }
+        .lang-pill {
+            position: absolute;
+            height: calc(100% - 8px);
+            width: calc(50% - 4px);
+            background-color: #0f172a;
+            border-radius: 999px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+        }
+        .dark .lang-pill {
+            background-color: #3b82f6;
+        }
+        .lang-toggle.es .lang-pill { transform: translateX(0); }
+        .lang-toggle.en .lang-pill { transform: translateX(100%); }
+        
+        .lang-text {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        .lang-toggle.es .text-es { color: white; }
+        .lang-toggle.es .text-en { color: #64748b; }
+        .lang-toggle.en .text-en { color: white; }
+        .lang-toggle.en .text-es { color: #64748b; }
+        
+        .dark .lang-toggle.es .text-es { color: white; }
+        .dark .lang-toggle.es .text-en { color: #94a3b8; }
+        .dark .lang-toggle.en .text-en { color: white; }
+        .dark .lang-toggle.en .text-es { color: #94a3b8; }
+
+        /* Clases de Traducción */
+        html[lang="es"] .content-en { display: none !important; }
+        html[lang="en"] .content-es { display: none !important; }
+
+        /* SCROLLBAR CON FLECHAS EN LOS EXTREMOS */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 12px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1e293b; /* Azul marino elegante */
+            border-radius: 10px;
+            border: 3px solid #f1f5f9;
+            cursor: pointer;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border: 3px solid #1e293b;
+        }
+        
+        /* Flechas en los botones del scrollbar (NO SE CRUZAN CON LA BARRA) */
+        .custom-scrollbar::-webkit-scrollbar-button:single-button {
+            width: 24px;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 14px;
+            cursor: pointer;
+        }
+        .custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%231e293b"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/></svg>');
+        }
+        .custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%231e293b"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>');
+        }
+        /* Flechas Dark Mode */
+        .dark .custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%2394a3b8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/></svg>');
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%2394a3b8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>');
+        }
+
+        .snap-mandatory { scroll-snap-type: x mandatory; }
+        .snap-center { scroll-snap-align: center; }
+
+        /* Animaciones Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+
+        /* Carrusel Infinito */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 35s linear infinite;
+            gap: 2rem;
+            padding-left: 2rem;
+        }
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden font-sans bg-white text-slate-900 dark:bg-dark dark:text-slate-50">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 z-50 bg-white/80 dark:bg-[#020617]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
+            <div class="font-black text-2xl tracking-tighter text-slate-900 dark:text-white">MC.</div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Botón Dark Mode -->
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+
+                <!-- Toggle Bilingüe -->
+                <div class="lang-toggle es" id="lang-switch" onclick="toggleLanguage()">
+                    <div class="lang-pill"></div>
+                    <div class="lang-text text-es"><span class="content-es">ESPAÑOL</span><span class="content-en">SPANISH</span></div>
+                    <div class="lang-text text-en"><span class="content-es">INGLÉS</span><span class="content-en">ENGLISH</span></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-24 px-6 md:px-12 max-w-[1400px] mx-auto min-h-[80vh] flex flex-col justify-center">
+        
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+            <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-3xl">
+                <div class="inline-block px-4 py-1.5 bg-[#fef9c3] dark:bg-yellow-500/20 text-[#854d0e] dark:text-yellow-300 text-xs font-bold rounded-full tracking-wide mb-8 reveal">
+                    <span class="content-es">Top 10% Décimo Superior PUCP</span>
+                    <span class="content-en">Top 10% Dean's List PUCP</span>
+                </div>
+
+                <h1 class="text-[3.5rem] md:text-[5rem] lg:text-[6rem] font-black leading-[1.05] tracking-tighter text-slate-900 dark:text-white mb-6 reveal delay-100">
+                    <span class="content-es">
+                        <span class="text-gradient-strategy">Estrategia</span>, <span class="text-gradient-data">datos</span> y <span class="text-gradient-creative">creatividad</span> para construir <span class="text-gradient-experiences">experiencias</span>.
+                    </span>
+                    <span class="content-en">
+                        <span class="text-gradient-strategy">Strategy</span>, <span class="text-gradient-data">data</span>, and <span class="text-gradient-creative">creativity</span> to build <span class="text-gradient-experiences">experiences</span>.
+                    </span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed max-w-2xl mb-10 reveal delay-200">
+                    <span class="content-es">Soy <strong class="text-slate-900 dark:text-white font-semibold">Melissa Crespo</strong>, estudiante de Gestión y Alta Dirección. Combino creatividad con análisis de datos (Python, GA4) para optimizar la experiencia de usuario y la conversión.</span>
+                    <span class="content-en">I'm <strong class="text-slate-900 dark:text-white font-semibold">Melissa Crespo</strong>, Management student. I combine creativity with data analysis (Python, GA4) to optimize user experience and conversion.</span>
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 reveal delay-200">
+                    <a href="#proyectos" class="flex items-center gap-2 px-6 py-3 bg-[#0f172a] text-white dark:bg-white dark:text-slate-900 rounded-xl text-sm font-semibold shadow-sm hover:shadow-md transition-shadow">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                        <span class="content-es">Ver proyectos</span>
+                        <span class="content-en">View projects</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-2 px-6 py-3 border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1e293b] rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span class="content-es">Descargar CV</span>
+                        <span class="content-en">Download CV</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/melissacrespobar/" target="_blank" class="flex items-center gap-2 px-6 py-3 border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1e293b] rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                        <svg class="w-5 h-5 text-[#0a66c2]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Marco de foto Portrait -->
+            <div class="flex-shrink-0 w-72 md:w-80 lg:w-[24rem] h-[34rem] rounded-3xl overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-900 reveal delay-200 relative group border border-slate-200 dark:border-slate-800">
+                <img src="foto-melissa-perfil.png" alt="Melissa Crespo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="hidden absolute inset-0 flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-4 text-center">
+                    <svg class="w-8 h-8 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span class="text-xs font-medium">Reemplazar foto-melissa-perfil.png</span>
+                    <span class="text-[10px] mt-1">(Proporción vertical - Plano medio)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Línea de tiempo -->
+    <section class="py-12 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-softDark transition-colors">
+        <div class="max-w-[1000px] mx-auto px-6 overflow-x-auto custom-scrollbar reveal">
+            <div class="flex items-center min-w-[700px] justify-between relative py-4">
+                <div class="absolute top-1/2 left-0 w-full h-[1px] bg-slate-300 dark:bg-slate-700 -z-0"></div>
+                
+                <div class="relative z-10 flex flex-col items-center group">
+                    <div class="px-6 py-2 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-500 dark:text-slate-400 shadow-sm mb-2">Importaciones MEPA</div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Abr 2023 - Ene 2024</span>
+                </div>
+                <div class="relative z-10 flex flex-col items-center group">
+                    <div class="px-6 py-2 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-500 dark:text-slate-400 shadow-sm mb-2">Admisión PUCP</div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Mar 2024 - Feb 2025</span>
+                </div>
+                <div class="relative z-10 flex flex-col items-center group">
+                    <div class="px-6 py-2 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-500 dark:text-slate-400 shadow-sm mb-2">York University</div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Jul 2024 - Ago 2024</span>
+                </div>
+                <div class="relative z-10 flex flex-col items-center group">
+                    <div class="px-6 py-2 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-500 dark:text-slate-400 shadow-sm mb-2">Ripley Perú</div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Jul 2025 - Abr 2026</span>
+                </div>
+                <div class="relative z-10 flex flex-col items-center group">
+                    <div class="px-6 py-2 bg-white dark:bg-cardDark border-2 border-slate-800 dark:border-brand-blue rounded-full text-sm font-bold text-slate-900 dark:text-white shadow-md mb-2">PUC Rio</div>
+                    <span class="text-[10px] font-bold text-brand-blue uppercase tracking-widest">
+                        <span class="content-es">ACTUALMENTE</span>
+                        <span class="content-en">CURRENTLY</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casos de Estudio (Sección Única Integrada) -->
+    <section id="proyectos" class="py-24 bg-white dark:bg-dark relative border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 reveal">
+            <div class="max-w-3xl">
+                <span class="text-xs font-bold tracking-widest uppercase text-brand-blue mb-3 block">
+                    <span class="content-es">CASOS DE ESTUDIO</span>
+                    <span class="content-en">CASE STUDIES</span>
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white mb-4">
+                    <span class="content-es">Una selección de proyectos que reflejan cómo abordo problemas desde el <span class="text-gradient-data">marketing</span>, el análisis de <span class="text-gradient-strategy">datos</span> y la experiencia del <span class="text-gradient-creative">consumidor.</span></span>
+                    <span class="content-en">A selection of projects reflecting how I tackle problems through <span class="text-gradient-data">marketing</span>, <span class="text-gradient-strategy">data</span> analysis, and consumer <span class="text-gradient-creative">experience.</span></span>
+                </h2>
+            </div>
+            
+            <button onclick="scrollSlider('casos-slider', 1)" class="flex items-center gap-3 px-6 py-3 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-cardDark text-slate-600 dark:text-slate-300 text-xs font-bold tracking-widest hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors group">
+                <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span class="content-es">DESLIZA PARA DESCUBRIR</span>
+                <span class="content-en">SWIPE TO DISCOVER</span>
+                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+        </div>
+
+        <div id="casos-slider" class="flex overflow-x-auto custom-scrollbar snap-x snap-mandatory gap-6 md:gap-8 px-6 md:px-12 pb-8 scroll-smooth">
+            
+            <!-- Card 1: Grupo Kusi -->
+            <div class="w-[85vw] md:w-[65vw] lg:w-[55vw] shrink-0 snap-center bg-slate-50 dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-3xl p-8 lg:p-10 reveal delay-100 transition-colors grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 mb-2 uppercase block">Case Study 01</span>
+                        <h3 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none mb-6">Grupo <br>Kusi.</h3>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Contexto & Problema</span>
+                                <span class="content-en">Context & Problem</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Desarrollo de un modelo de negocio inicial identificando oportunidades en el mercado local y estructurando los primeros pasos para su ejecución comercial.</span>
+                                <span class="content-en">Development of an initial business model identifying opportunities in the local market and structuring the first steps for commercial execution.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Mi Rol & Proceso</span>
+                                <span class="content-en">My Role & Process</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Estructuración estratégica desde cero. Definición de buyer persona, análisis competitivo y viabilidad operativa del proyecto comercial.</span>
+                                <span class="content-en">Strategic structuring from scratch. Definition of buyer persona, competitive analysis, and operational viability of the commercial project.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 md:h-[18rem] lg:h-[22rem] bg-slate-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-300 dark:border-slate-800">
+                        <img src="mockup-kusi.png" alt="Proyecto Kusi" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden flex-col items-center text-slate-500 text-center px-4">
+                            <span class="text-xs font-medium">Espacio para: mockup-kusi.png</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 dark:bg-black border border-slate-800 p-5 rounded-2xl flex flex-col justify-center">
+                            <div class="text-3xl font-black tracking-tighter text-white mb-1">E2E</div>
+                            <div class="text-[10px] font-light text-slate-400 leading-snug">
+                                <span class="content-es">Gestión integral del proyecto.</span>
+                                <span class="content-en">End-to-End project management.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex flex-col justify-center transition-colors">
+                            <div class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-1">0 a 1</div>
+                            <div class="text-[10px] font-light text-slate-500 dark:text-slate-400 leading-snug">
+                                <span class="content-es">Desarrollo de idea a ejecución.</span>
+                                <span class="content-en">From idea to execution development.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: MEPA -->
+            <div class="w-[85vw] md:w-[65vw] lg:w-[50vw] shrink-0 snap-center bg-slate-50 dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-3xl p-8 lg:p-10 reveal delay-100 transition-colors grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 mb-2 uppercase block">Case Study 02</span>
+                        <h3 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none mb-6">Imp. MEPA <br>Perú.</h3>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Contexto & Problema</span>
+                                <span class="content-en">Context & Problem</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Necesidad de diversificar las líneas comerciales y explorar nuevas oportunidades de mercado en el segmento tecnológico minorista mediante importaciones directas.</span>
+                                <span class="content-en">Need to diversify commercial lines and explore new market opportunities in the retail tech segment through direct imports.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Mi Rol & Proceso</span>
+                                <span class="content-en">My Role & Process</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Como Asistente de Gestión Comercial, evalué y ejecuté la importación de productos, coordinando directamente con proveedores en China e India y gestionando el catálogo digital.</span>
+                                <span class="content-en">As Commercial Management Assistant, I evaluated and executed product imports, coordinating directly with suppliers in China and India and managing the digital catalog.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 md:h-[18rem] lg:h-[22rem] bg-slate-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-300 dark:border-slate-800">
+                        <img src="mockup-mepa.png" alt="MEPA Perú" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden flex-col items-center text-slate-500 text-center px-4">
+                            <span class="text-xs font-medium">Espacio para: mockup-mepa.png</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 dark:bg-black border border-slate-800 p-5 rounded-2xl flex flex-col justify-center">
+                            <div class="text-3xl font-black tracking-tighter text-brand-teal mb-1">B2B</div>
+                            <div class="text-[10px] font-light text-slate-400 leading-snug">
+                                <span class="content-es">Negociación internacional directa.</span>
+                                <span class="content-en">Direct international negotiation.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex flex-col justify-center transition-colors">
+                            <div class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-1">ERP</div>
+                            <div class="text-[10px] font-light text-slate-500 dark:text-slate-400 leading-snug">
+                                <span class="content-es">Gestión integral de inventario.</span>
+                                <span class="content-en">Integral inventory management.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Ripley Data & SEO -->
+            <div class="w-[85vw] md:w-[65vw] lg:w-[50vw] shrink-0 snap-center bg-slate-50 dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-3xl p-8 lg:p-10 reveal delay-100 transition-colors grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 mb-2 uppercase block">Case Study 03</span>
+                        <h3 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none mb-6">Ripley <br>Data & SEO.</h3>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Contexto & Problema</span>
+                                <span class="content-en">Context & Problem</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Baja conversión en búsquedas orgánicas y falta de agilidad para identificar términos de búsqueda estacionales de bajo rendimiento en la tienda virtual.</span>
+                                <span class="content-en">Low conversion in organic searches and lack of agility to identify underperforming seasonal search terms in the virtual store.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Mi Rol & Proceso</span>
+                                <span class="content-en">My Role & Process</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Analicé datos extraídos de GA4 y BigQuery. Desarrollé scripts en Python para segmentar eficientemente las keywords e implementé redirecciones estratégicas.</span>
+                                <span class="content-en">Analyzed data extracted from GA4 and BigQuery. Developed Python scripts to efficiently segment keywords and implemented strategic redirections.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 md:h-[18rem] lg:h-[22rem] bg-slate-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-300 dark:border-slate-800">
+                        <img src="mockup-ripley-data.png" alt="Ripley Data Analytics" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden flex-col items-center text-slate-500 text-center px-4">
+                            <span class="text-xs font-medium">Espacio para: mockup-ripley-data.png</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 dark:bg-black border border-slate-800 p-5 rounded-2xl flex flex-col justify-center">
+                            <div class="text-3xl font-black tracking-tighter text-white mb-1">+70%</div>
+                            <div class="text-[10px] font-light text-slate-400 leading-snug">
+                                <span class="content-es">Incremento de CTR% tras redirección.</span>
+                                <span class="content-en">CTR% increase after redirection.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex flex-col justify-center transition-colors">
+                            <div class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-1">145</div>
+                            <div class="text-[10px] font-light text-slate-500 dark:text-slate-400 leading-snug">
+                                <span class="content-es">Keywords optimizadas vía Python.</span>
+                                <span class="content-en">Keywords optimized via Python.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Ripley Knowledge -->
+            <div class="w-[85vw] md:w-[65vw] lg:w-[50vw] shrink-0 snap-center bg-slate-50 dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-3xl p-8 lg:p-10 reveal delay-100 transition-colors grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 mb-2 uppercase block">Case Study 04</span>
+                        <h3 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none mb-6">Ripley <br>Knowledge.</h3>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Contexto & Problema</span>
+                                <span class="content-en">Context & Problem</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">La curva de aprendizaje para nuevos integrantes del equipo comercial era empinada debido a la falta de estandarización en procesos de analítica y gestión de CMS.</span>
+                                <span class="content-en">The learning curve for new commercial team members was steep due to a lack of standardization in analytics and CMS management processes.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Mi Rol & Proceso</span>
+                                <span class="content-en">My Role & Process</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Diseñé y redacté tres guías digitales operativas y estratégicas (GA4/SQL, Procesos UX, Medios de Pago) para sistematizar el conocimiento y agilizar el onboarding.</span>
+                                <span class="content-en">Designed and authored three operational and strategic digital guides (GA4/SQL, UX Processes, Payment Methods) to systematize knowledge and speed up onboarding.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 md:h-[18rem] lg:h-[22rem] bg-slate-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-300 dark:border-slate-800">
+                        <img src="mockup-ripley-guia.png" alt="Ripley Knowledge Management" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden flex-col items-center text-slate-500 text-center px-4">
+                            <span class="text-xs font-medium">Espacio para: mockup-ripley-guia.png</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 dark:bg-black border border-slate-800 p-5 rounded-2xl flex flex-col justify-center">
+                            <div class="text-3xl font-black tracking-tighter text-brand-blue mb-1">03</div>
+                            <div class="text-[10px] font-light text-slate-400 leading-snug">
+                                <span class="content-es">Manuales estratégicos creados.</span>
+                                <span class="content-en">Strategic manuals created.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex flex-col justify-center transition-colors">
+                            <div class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-1">E2E</div>
+                            <div class="text-[10px] font-light text-slate-500 dark:text-slate-400 leading-snug">
+                                <span class="content-es">Estandarización de procesos.</span>
+                                <span class="content-en">Process standardization.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Macaccino -->
+            <div class="w-[85vw] md:w-[65vw] lg:w-[50vw] shrink-0 snap-center bg-slate-50 dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-3xl p-8 lg:p-10 reveal delay-100 transition-colors grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 mb-2 uppercase block">Case Study 05</span>
+                        <h3 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none mb-6">Macaccino <br>GTM.</h3>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Contexto & Problema</span>
+                                <span class="content-en">Context & Problem</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Proyecto académico LARECAS x Nescafé. Reto de lanzar un producto innovador "ready-to-drink" que conectara el superalimento andino con el consumo masivo.</span>
+                                <span class="content-en">Academic project LARECAS x Nescafé. Challenge to launch an innovative ready-to-drink product connecting Andean superfoods with mass consumption.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Mi Rol & Proceso</span>
+                                <span class="content-en">My Role & Process</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Formulé el Plan de Marketing GTM. Desde análisis de mercado y Buyer Persona hasta proyecciones financieras y diseño de experiencia de producto (degustación).</span>
+                                <span class="content-en">Formulated the GTM Marketing Plan. From market analysis and Buyer Persona to financial forecasting and product experience design (tasting).</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 md:h-[18rem] lg:h-[22rem] bg-slate-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-300 dark:border-slate-800">
+                        <img src="mockup-macaccino.png" alt="Macaccino Prototype" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden flex-col items-center text-slate-500 text-center px-4">
+                            <span class="text-xs font-medium">Espacio para: mockup-macaccino.png</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 dark:bg-black border border-slate-800 p-5 rounded-2xl flex flex-col justify-center">
+                            <div class="text-3xl font-black tracking-tighter text-brand-orange mb-1">20/20</div>
+                            <div class="text-[10px] font-light text-slate-400 leading-snug">
+                                <span class="content-es">Calificación perfecta del jurado.</span>
+                                <span class="content-en">Perfect score from the jury.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex flex-col justify-center transition-colors">
+                            <div class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-1">GTM</div>
+                            <div class="text-[10px] font-light text-slate-500 dark:text-slate-400 leading-snug">
+                                <span class="content-es">Estrategia Go-To-Market completa.</span>
+                                <span class="content-en">Complete Go-To-Market strategy.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Marketing Internacional -->
+            <div class="w-[85vw] md:w-[65vw] lg:w-[50vw] shrink-0 snap-center bg-slate-50 dark:bg-cardDark border border-slate-200 dark:border-slate-700 rounded-3xl p-8 lg:p-10 reveal delay-100 transition-colors grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 mb-2 uppercase block">Case Study 06</span>
+                        <h3 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none mb-6">Marketing <br>Internacional.</h3>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Contexto & Problema</span>
+                                <span class="content-en">Context & Problem</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Diseñar el Plan de Internacionalización para Società Latina, buscando posicionar superfoods peruanos en el exigente mercado italiano enfrentando barreras de confianza.</span>
+                                <span class="content-en">Design an Internationalization Plan for Società Latina, seeking to position Peruvian superfoods in the demanding Italian market facing trust barriers.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-2 uppercase">
+                                <span class="content-es">Mi Rol & Proceso</span>
+                                <span class="content-en">My Role & Process</span>
+                            </h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <span class="content-es">Definición de Buyer Persona (Luca Ferretti), análisis de certificaciones europeas (HACCP) y estructuración del storytelling basado en trazabilidad directa "Farm to Fork".</span>
+                                <span class="content-en">Definition of Buyer Persona (Luca Ferretti), analysis of European certifications (HACCP), and structuring storytelling based on direct "Farm to Fork" traceability.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 md:h-[18rem] lg:h-[22rem] bg-slate-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center relative overflow-hidden border border-slate-300 dark:border-slate-800">
+                        <img src="mockup-italia.png" alt="Marketing Internacional Italia" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden flex-col items-center text-slate-500 text-center px-4">
+                            <span class="text-xs font-medium">Espacio para: mockup-italia.png</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 dark:bg-black border border-slate-800 p-5 rounded-2xl flex flex-col justify-center">
+                            <div class="text-3xl font-black tracking-tighter text-brand-pink mb-1">UE</div>
+                            <div class="text-[10px] font-light text-slate-400 leading-snug">
+                                <span class="content-es">Análisis de normativas europeas.</span>
+                                <span class="content-en">European regulations analysis.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl flex flex-col justify-center transition-colors">
+                            <div class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-1">B2C</div>
+                            <div class="text-[10px] font-light text-slate-500 dark:text-slate-400 leading-snug">
+                                <span class="content-es">Estrategia centrada en el consumidor.</span>
+                                <span class="content-en">Consumer-centric strategy.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Storytelling & Contenido -->
+    <section class="py-24 bg-slate-50 dark:bg-softDark border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 reveal">
+            <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+                
+                <!-- Columna de Texto Editorial -->
+                <div class="lg:col-span-2 flex flex-col gap-8">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-brand-pink mb-3 block">
+                            <span class="content-es">COMUNICACIÓN DIGITAL</span>
+                            <span class="content-en">DIGITAL COMMUNICATION</span>
+                        </span>
+                        <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white mb-6">
+                            Storytelling & <br>Contenido.
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed mb-4">
+                            <span class="content-es">Aprendí que las marcas conectan cuando cuentan historias reales. Como Guía PUCP, participé en la creación de contenido para redes sociales dirigido a futuros postulantes, transformando experiencias universitarias en piezas digitales capaces de informar, inspirar y generar conexión con distintas audiencias.</span>
+                            <span class="content-en">I learned that brands connect when they tell real stories. As a PUCP Guide, I participated in creating social media content for prospective students, transforming university experiences into digital pieces capable of informing, inspiring, and connecting with different audiences.</span>
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed mb-8">
+                            <span class="content-es">Participé en todo el proceso creativo: conceptualización de ideas, construcción del storytelling, guionización y participación frente a cámara. Además, colaboré en visitas guiadas, exámenes de admisión y eventos orientados a fortalecer la experiencia de futuros estudiantes.</span>
+                            <span class="content-en">I took part in the entire creative process: concept ideation, storytelling construction, scriptwriting, and on-camera presence. Additionally, I collaborated in guided tours, admission exams, and events aimed at strengthening the future student experience.</span>
+                        </p>
+                    </div>
+
+                    <div class="flex gap-8 border-l-2 border-brand-pink pl-6 py-2">
+                        <div>
+                            <div class="text-3xl font-black text-slate-900 dark:text-white">+20k</div>
+                            <div class="text-xs text-slate-500 font-medium tracking-wide">
+                                <span class="content-es">VISTAS EN REELS</span>
+                                <span class="content-en">REELS VIEWS</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-slate-900 dark:text-white">+40%</div>
+                            <div class="text-xs text-slate-500 font-medium tracking-wide">
+                                <span class="content-es">DE ENGAGEMENT</span>
+                                <span class="content-en">ENGAGEMENT RATE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold tracking-widest text-slate-900 dark:text-white mb-4 uppercase">
+                            <span class="content-es">Experiencias Destacadas</span>
+                            <span class="content-en">Highlighted Experiences</span>
+                        </h4>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-medium">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> York University</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> Deportes PUCP</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> Universiadas Arequipa</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> Tendencias para postulantes</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> Experiencias universitarias</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Columna de Galería (Reels incrustados) -->
+                <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Reel 1 -->
+                    <div class="flex flex-col gap-3">
+                        <div class="w-full aspect-[9/16] bg-slate-200 dark:bg-slate-900 rounded-2xl overflow-hidden relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <span class="text-xs text-slate-400 px-4 text-center absolute z-0">Reemplazar con iframe de Instagram</span>
+                            <!-- Pegar iframe de Instagram AQUÍ -->
+                            <iframe class="absolute inset-0 w-full h-full z-10" src="" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-[10px] font-semibold text-slate-600 dark:text-slate-300">Storytelling</span>
+                            <span class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-[10px] font-semibold text-slate-600 dark:text-slate-300">Brand Content</span>
+                        </div>
+                    </div>
+
+                    <!-- Reel 2 -->
+                    <div class="flex flex-col gap-3 md:mt-12">
+                        <div class="w-full aspect-[9/16] bg-slate-200 dark:bg-slate-900 rounded-2xl overflow-hidden relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <span class="text-xs text-slate-400 px-4 text-center absolute z-0">Reemplazar con iframe de Instagram</span>
+                            <!-- Pegar iframe de Instagram AQUÍ -->
+                            <iframe class="absolute inset-0 w-full h-full z-10" src="" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-[10px] font-semibold text-slate-600 dark:text-slate-300">Video Marketing</span>
+                            <span class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-[10px] font-semibold text-slate-600 dark:text-slate-300">Redes Sociales</span>
+                        </div>
+                    </div>
+
+                    <!-- Reel 3 -->
+                    <div class="flex flex-col gap-3 hidden md:flex lg:mt-0">
+                        <div class="w-full aspect-[9/16] bg-slate-200 dark:bg-slate-900 rounded-2xl overflow-hidden relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <span class="text-xs text-slate-400 px-4 text-center absolute z-0">Reemplazar con iframe de Instagram</span>
+                            <!-- Pegar iframe de Instagram AQUÍ -->
+                            <iframe class="absolute inset-0 w-full h-full z-10" src="" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-[10px] font-semibold text-slate-600 dark:text-slate-300">Exp. Universitaria</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel Infinito: Más allá del marketing -->
+    <section class="py-24 bg-white dark:bg-dark overflow-hidden transition-colors">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 mb-12 reveal">
+            <h2 class="text-3xl md:text-4xl font-black tracking-tighter text-slate-900 dark:text-white mb-2">
+                <span class="content-es">Más allá del <span class="text-gradient-experiences">marketing.</span></span>
+                <span class="content-en">Beyond <span class="text-gradient-experiences">marketing.</span></span>
+            </h2>
+            <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 font-light">
+                <span class="content-es">Las experiencias personales que han fortalecido mi forma de liderar, aprender y trabajar con otras personas.</span>
+                <span class="content-en">Personal experiences that have strengthened how I lead, learn, and collaborate with others.</span>
+            </p>
+        </div>
+
+        <div class="marquee-container reveal delay-100">
+            <div class="marquee-content">
+                
+                <!-- Tarjeta 1: Taekwondo -->
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Taekwondo</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Disciplina y resiliencia. Formar parte de la selección de Taekwondo exige equilibrio, constancia y trabajo bajo presión constante.</span>
+                            <span class="content-en">Discipline and resilience. Being part of the Taekwondo team demands balance, consistency, and working under constant pressure.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-taekwondo.png" alt="TKD" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-taekwondo.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-slate-900 dark:bg-slate-600 flex items-center justify-center text-white text-xs font-bold">TKD</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Soft Skills & Liderazgo</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: COEX -->
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Investigación COEX</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Delegación y control de investigaciones del mercado chino-peruano para Comercio Exterior. Análisis sectorial y publicación de informes.</span>
+                            <span class="content-en">Delegation and control of Chinese-Peruvian market research for Foreign Trade. Sectoral analysis and report publishing.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-coex.png" alt="COEX" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-coex.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center text-white text-xs font-bold">CX</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Market Research</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: York -->
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Inmersión York</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Programa presencial en Inglaterra de Language, Business and Marketing. Intercambio cultural y adaptación rápida a nuevos entornos.</span>
+                            <span class="content-en">On-site program in England for Language, Business, and Marketing. Cultural exchange and rapid adaptation to new environments.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-york.png" alt="York" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-york.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-brand-teal flex items-center justify-center text-white text-xs font-bold">UK</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Visión Global</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: PUC Rio -->
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Intercambio PUC Rio</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Expansión académica internacional en Brasil. Fortalecimiento de competencias interculturales y nuevas perspectivas de gestión.</span>
+                            <span class="content-en">International academic expansion in Brazil. Strengthening of intercultural competencies and new management perspectives.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-pucrio.png" alt="PUC Rio" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-pucrio.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center text-white text-xs font-bold">BR</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Networking Internacional</span>
+                    </div>
+                </div>
+
+                <!-- DUPLICADO EXACTO para loop continuo -->
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Taekwondo</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Disciplina y resiliencia. Formar parte de la selección de Taekwondo exige equilibrio, constancia y trabajo bajo presión constante.</span>
+                            <span class="content-en">Discipline and resilience. Being part of the Taekwondo team demands balance, consistency, and working under constant pressure.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-taekwondo.png" alt="TKD" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-taekwondo.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-slate-900 dark:bg-slate-600 flex items-center justify-center text-white text-xs font-bold">TKD</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Soft Skills & Liderazgo</span>
+                    </div>
+                </div>
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Investigación COEX</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Delegación y control de investigaciones del mercado chino-peruano para Comercio Exterior. Análisis sectorial y publicación de informes.</span>
+                            <span class="content-en">Delegation and control of Chinese-Peruvian market research for Foreign Trade. Sectoral analysis and report publishing.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-coex.png" alt="COEX" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-coex.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center text-white text-xs font-bold">CX</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Market Research</span>
+                    </div>
+                </div>
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Inmersión York</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Programa presencial en Inglaterra de Language, Business and Marketing. Intercambio cultural y adaptación rápida a nuevos entornos.</span>
+                            <span class="content-en">On-site program in England for Language, Business, and Marketing. Cultural exchange and rapid adaptation to new environments.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-york.png" alt="York" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-york.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-brand-teal flex items-center justify-center text-white text-xs font-bold">UK</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Visión Global</span>
+                    </div>
+                </div>
+                <div class="w-[320px] shrink-0 bg-slate-50 dark:bg-cardDark rounded-2xl p-6 flex flex-col justify-between border border-slate-200 dark:border-slate-700 transition-colors">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Intercambio PUC Rio</h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed mb-4">
+                            <span class="content-es">Expansión académica internacional en Brasil. Fortalecimiento de competencias interculturales y nuevas perspectivas de gestión.</span>
+                            <span class="content-en">International academic expansion in Brazil. Strengthening of intercultural competencies and new management perspectives.</span>
+                        </p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-900 rounded-xl overflow-hidden mb-4 relative border border-slate-300 dark:border-slate-800 flex items-center justify-center">
+                            <img src="foto-pucrio.png" alt="PUC Rio" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none'">
+                            <span class="text-xs text-slate-400 dark:text-slate-500 absolute z-0">foto-pucrio.png</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div class="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center text-white text-xs font-bold">BR</div>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Networking Internacional</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white dark:bg-dark text-center border-t border-slate-200 dark:border-slate-800 transition-colors">
+        <p class="text-sm text-slate-500 font-medium">Melissa Crespo © 2026.</p>
+    </footer>
+
+    <script>
+        // Animaciones Reveal on Scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+        // Lógica de Traducción
+        function toggleLanguage() {
+            const toggleContainer = document.getElementById('lang-switch');
+            const htmlTag = document.documentElement;
+            
+            if (toggleContainer.classList.contains('es')) {
+                toggleContainer.classList.remove('es');
+                toggleContainer.classList.add('en');
+                htmlTag.setAttribute('lang', 'en');
+            } else {
+                toggleContainer.classList.remove('en');
+                toggleContainer.classList.add('es');
+                htmlTag.setAttribute('lang', 'es');
+            }
+        }
+
+        // Lógica de Dark Mode
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Script para sliders horizontales
+        function scrollSlider(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            const scrollAmount = slider.clientWidth * 0.8 * direction; 
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
