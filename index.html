@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Società Latina | Miscela di Maca e Cacao</title>
+    
+    <!-- Tipografías Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#152b45',
+                        gold: '#d4a373',
+                        cream: '#fdfbf7',
+                        dark: '#1a1a1a',
+                        cardbg: '#f9f6f0'
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Gradientes sutiles */
+        .bg-soft-gradient { background: linear-gradient(180deg, #fdfbf7 0%, #f4efe9 100%); }
+        .bg-navy-gradient { background: linear-gradient(180deg, #152b45 0%, #0d1b2a 100%); }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-200 { transition-delay: 200ms; }
+        
+        /* Fondo del recetario más visible */
+        .bg-ritual {
+            background-image: linear-gradient(to right, rgba(21, 43, 69, 0.85), rgba(21, 43, 69, 0.6)), url('ritual.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        html[lang="it"] .lang-es { display: none !important; }
+        html[lang="es"] .lang-it { display: none !important; }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Barra Dorada Premium */
+        .custom-scroll {
+            scrollbar-width: auto;
+            scrollbar-color: #d4a373 rgba(0,0,0,0.05);
+        }
+        .custom-scroll::-webkit-scrollbar {
+            height: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(to right, #d4a373, #b5835a);
+            border-radius: 10px;
+        }
+        
+        /* Iconos SVG minimalistas */
+        .premium-icon svg { width: 32px; height: 32px; stroke: #d4a373; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body class="bg-soft-gradient font-sans text-dark overflow-x-hidden selection:bg-gold selection:text-white">
+
+    <!-- NAVEGACIÓN -->
+    <nav class="absolute w-full z-50 py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <!-- Logo con sombreado sutil para resaltar -->
+            <div class="w-40 md:w-56 flex-shrink-0 p-3 drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">
+                <img src="logo.png" alt="Società Latina Logo" class="w-full object-contain">
+            </div>
+            
+            <div class="flex justify-end">
+                <div class="bg-white/90 backdrop-blur-sm rounded-full p-1 shadow-md border border-gray-200 flex text-sm font-bold items-center">
+                    <button onclick="setLang('it')" id="btn-it" class="px-4 py-2 rounded-full bg-navy text-white transition-all flex items-center gap-2">
+                        <span class="text-lg">🇮🇹</span> IT
+                    </button>
+                    <button onclick="setLang('es')" id="btn-es" class="px-4 py-2 rounded-full text-navy hover:text-gold transition-all flex items-center gap-2">
+                        <span class="text-lg">🇪🇸</span> ES
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION CINEMATICO -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
+        
+        <!-- Sfondo del paesaggio -->
+        <div class="absolute inset-0 z-0">
+            <img src="fondopaisaje.png" alt="Fondo Andino Amazónico" class="w-full h-full object-cover object-center opacity-80">
+            <div class="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-[#fdfbf7]"></div>
+        </div>
+
+        <!-- Contenuto Centrale -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center pt-32 pb-12">
+            
+            <!-- Sottotitolo -->
+            <span class="text-gold text-xs md:text-sm tracking-[0.4em] uppercase mb-8 font-bold drop-shadow-md fade-in text-center">
+                <span class="lang-it">Superfood ancestrale</span>
+                <span class="lang-es">Superfood ancestral</span>
+            </span>
+
+            <div class="relative flex flex-col items-center justify-center w-full">
+                <!-- Nome Maestoso -->
+                <h1 class="text-6xl md:text-[8rem] lg:text-[10rem] font-serif text-white leading-none text-center drop-shadow-2xl fade-in relative z-0">
+                    <span class="lang-it">Il tesoro<br><span class="italic text-gold text-5xl md:text-[7rem] lg:text-[9rem]">di due mondi</span></span>
+                    <span class="lang-es">El tesoro<br><span class="italic text-gold text-5xl md:text-[7rem] lg:text-[9rem]">de dos mundos</span></span>
+                </h1>
+
+                <!-- PRODOTTO IN PRIMO PIANO (Sotto il testo) -->
+                <div class="relative z-10 fade-in delay-200 flex justify-center mt-4 w-full">
+                    <div class="absolute inset-0 bg-white/20 rounded-full blur-[80px] md:blur-[120px] scale-150"></div>
+                    <img src="producto.png" alt="Confezione Società Latina" class="w-[200px] md:w-[350px] lg:w-[450px] object-contain relative z-10 drop-shadow-[0_40px_50px_rgba(0,0,0,0.8)] hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FASCIA DEI VALORI -->
+    <div class="bg-navy py-6 fade-in">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-8 md:gap-16 text-white text-xs md:text-sm font-bold tracking-widest uppercase">
+            <div class="flex items-center gap-3">
+                <span class="text-gold text-2xl">🌿</span> 
+                <span><span class="lang-it">Ingredienti Vegetali</span><span class="lang-es">Ingredientes Vegetales</span></span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-gold text-2xl">🛡️</span> 
+                <span><span class="lang-it">Qualità Verificata</span><span class="lang-es">Calidad Verificada</span></span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-gold text-2xl">🌱</span> 
+                <span><span class="lang-it">Senza Additivi</span><span class="lang-es">Sin Aditivos</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PERCHÉ QUESTA MISCELA -->
+    <section class="bg-white py-24 px-6 relative border-b border-gray-100 shadow-sm">
+        <div class="max-w-5xl mx-auto text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-serif text-navy mb-6">
+                <span class="lang-it">Perché questa miscela?</span>
+                <span class="lang-es">¿Por qué esta mezcla?</span>
+            </h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-12 text-lg max-w-3xl mx-auto">
+                <span class="lang-it">Una combinazione equilibrata di 70% maca gialla peruviana e 30% cacao, pensata per trasformare ingredienti ancestrali in un rituale quotidiano semplice e versatile. La maca apporta carattere e identità andina, mentre il cacao dona una nota più morbida e avvolgente.</span>
+                <span class="lang-es">Una combinación equilibrada de 70% maca amarilla peruana y 30% cacao, pensada para transformar ingredientes ancestrales en un ritual cotidiano simple y versátil. La maca aporta carácter e identidad andina, mientras que el cacao brinda una nota más suave y envolvente.</span>
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="p-6 bg-cream rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-4xl font-serif text-navy mb-2">70%</div>
+                    <div class="text-xs font-bold text-gold uppercase tracking-wider">
+                        <span class="lang-it">Maca Gialla</span><span class="lang-es">Maca Amarilla</span>
+                    </div>
+                </div>
+                <div class="p-6 bg-cream rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-4xl font-serif text-navy mb-2">30%</div>
+                    <div class="text-xs font-bold text-gold uppercase tracking-wider">Cacao</div>
+                </div>
+                <div class="p-6 bg-cream rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-3xl font-serif text-navy mb-3 mt-1">🌿</div>
+                    <div class="text-xs font-bold text-gold uppercase tracking-wider">
+                        <span class="lang-it">Tradizione</span><span class="lang-es">Tradición</span>
+                    </div>
+                </div>
+                <div class="p-6 bg-cream rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-3xl font-serif text-navy mb-3 mt-1">☕</div>
+                    <div class="text-xs font-bold text-gold uppercase tracking-wider">
+                        <span class="lang-it">Versatile</span><span class="lang-es">Versátil</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO STORIA -->
+    <section id="video-storia" class="bg-navy-gradient py-24 px-6 relative border-t border-white/5">
+        <div class="max-w-5xl mx-auto fade-in">
+            <div class="text-center mb-10">
+                <span class="text-gold text-sm tracking-widest uppercase mb-2 block font-bold">
+                    <span class="lang-it">Un Viaggio Millenario</span>
+                    <span class="lang-es">Un Viaje Milenario</span>
+                </span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mb-4">
+                    <span class="lang-it">La storia dietro la miscela</span>
+                    <span class="lang-es">La historia detrás de la mezcla</span>
+                </h2>
+            </div>
+            
+            <div class="video-container border-4 border-white/10 rounded-2xl shadow-2xl mb-4">
+                <iframe src="https://www.youtube.com/embed/B6f37hxtBQw?autoplay=0&controls=1&showinfo=0&rel=0&modestbranding=1" title="Società Latina Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <!-- Disclaimer IA -->
+            <p class="text-center text-xs md:text-sm text-gray-400 font-light italic">
+                <span class="lang-it">* Video concettuale generato con IA + indicazioni sulla salute moderate.</span>
+                <span class="lang-es">* Video conceptual generado con IA + claims de salud moderados.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- STORIA E ORIGINE: MACA E CACAO SEPARATI -->
+    <section class="bg-white py-24 px-6 relative overflow-hidden">
+        
+        <div class="text-center mb-20 fade-in">
+            <span class="text-gold text-sm tracking-widest uppercase mb-2 block font-bold">
+                <span class="lang-it">Scopri due tesori peruviani</span>
+                <span class="lang-es">Descubre dos tesoros peruanos</span>
+            </span>
+            <h2 class="text-4xl md:text-5xl font-serif text-navy mb-6">
+                <span class="lang-it">Dalle Ande e dall'Amazzonia, fino alle Alpi</span>
+                <span class="lang-es">De los Andes y la Amazonía, hasta los Alpes</span>
+            </h2>
+        </div>
+
+        <div class="max-w-7xl mx-auto space-y-32">
+            
+            <!-- Blocco 1: Maca Andina -->
+            <div class="flex flex-col lg:flex-row items-center gap-16 fade-in">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -inset-4 bg-cream rounded-[3rem] transform rotate-3 -z-10"></div>
+                    <img src="agricultormaca.png" alt="Agricoltore Peruviano Maca" class="w-full h-[500px] object-cover rounded-3xl shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <span class="text-gold text-sm tracking-widest uppercase mb-4 block font-bold">
+                        <span class="lang-it">Origine e Tradizione</span>
+                        <span class="lang-es">Origen y Tradición</span>
+                    </span>
+                    <p class="text-gray-600 font-light leading-relaxed mb-6 text-lg">
+                        <span class="lang-it">Questa miscela nasce dall’incontro tra due ingredienti profondamente legati al Perù: la maca delle Ande e il cacao della foresta amazzonica. Da secoli, queste materie prime accompagnano le abitudini alimentari delle culture antiche, inclusa quella incaica.</span>
+                        <span class="lang-es">Esta mezcla nace del encuentro entre dos ingredientes profundamente ligados a Perú: la maca de los Andes y el cacao de la selva amazónica. Por siglos, estas materias primas acompañan los hábitos alimentarios de las culturas antiguas, incluida la incaica.</span>
+                    </p>
+                    <div class="bg-cream p-6 rounded-2xl border-l-4 border-gold">
+                        <p class="text-navy font-bold flex items-center gap-3">
+                            <svg class="w-6 h-6 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="lang-it">Selezione Accurata. Patrimonio Culturale.</span>
+                            <span class="lang-es">Selección Cuidadosa. Patrimonio Cultural.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blocco 2: Cacao Amazzonico -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16 fade-in delay-200">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -inset-4 bg-navy/5 rounded-[3rem] transform -rotate-3 -z-10"></div>
+                    <img src="agricultoracacao.png" alt="Agricoltore Cacao Amazzonia" class="w-full h-[500px] object-cover rounded-3xl shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <span class="text-gold text-sm tracking-widest uppercase mb-4 block font-bold">
+                        <span class="lang-it">La Ricchezza della Foresta</span>
+                        <span class="lang-es">La Riqueza de la Selva</span>
+                    </span>
+                    <p class="text-gray-600 font-light leading-relaxed mb-6 text-lg">
+                        <span class="lang-it">Oggi reinterpretiamo questi ingredienti in una proposta contemporanea, pensata per chi cerca gusto, ritualità e un legame autentico. Il cacao aggiunge non solo un aroma inconfondibile, ma trasforma la miscela in un'esperienza morbida e avvolgente.</span>
+                        <span class="lang-es">Hoy reinterpretamos estos ingredientes en una propuesta contemporánea, pensada para quienes buscan sabor, ritualidad y un vínculo auténtico. El cacao añade no solo un aroma inconfundible, sino que transforma la mezcla en una experiencia suave y envolvente.</span>
+                    </p>
+                    <p class="text-navy font-bold flex items-center gap-3 bg-white p-4 border border-gray-100 rounded-xl shadow-sm w-max">
+                        <span class="text-2xl">🍫</span>
+                        <span class="lang-it">Aroma profondo e note tostate.</span>
+                        <span class="lang-es">Aroma profundo y notas tostadas.</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PURO NUTRIMENTO + CLAIMS EFSA -->
+    <section class="bg-soft-gradient py-24 px-6 relative border-t border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-16 fade-in">
+                <span class="text-gold text-sm tracking-widest uppercase mb-2 block font-bold">
+                    <span class="lang-it">Nutrienti da Valorizzare</span><span class="lang-es">Nutrientes a Valorar</span>
+                </span>
+                <h2 class="text-4xl md:text-5xl font-serif text-navy mb-6">
+                    Puro Nutrimento
+                </h2>
+                <div class="w-16 h-1 bg-gold mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 EFSA: Energia (Con imagen tarjeta1) -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in border border-gray-100">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="tarjeta1.png" alt="Energia" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 left-4 bg-white/95 text-navy text-xs font-bold px-4 py-2 rounded-lg shadow-sm uppercase tracking-wider flex items-center gap-2">
+                            <span class="text-gold">⚡</span> <span class="lang-it">Vitalità</span><span class="lang-es">Vitalidad</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif text-navy mb-4">
+                            <span class="lang-it">Energia quotidiana</span><span class="lang-es">Energía diaria</span>
+                        </h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            <span class="lang-it">Il <strong>magnesio</strong> contribuisce al normale metabolismo energetico. Contribuisce anche alla riduzione della stanchezza e dell’affaticamento.</span>
+                            <span class="lang-es">El <strong>magnesio</strong> contribuye al metabolismo energético normal. También ayuda a disminuir el cansancio y la fatiga.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 EFSA: Focus -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in delay-200 border border-gray-100">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="concentracion.png" alt="Focus" class="w-full h-full object-cover object-center">
+                        <div class="absolute bottom-4 left-4 bg-white/95 text-navy text-xs font-bold px-4 py-2 rounded-lg shadow-sm uppercase tracking-wider flex items-center gap-2">
+                            <span class="text-gold">🧠</span> Focus
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif text-navy mb-4">
+                            <span class="lang-it">Focus e funzione cognitiva</span><span class="lang-es">Enfoque y función cognitiva</span>
+                        </h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            <span class="lang-it">Il <strong>ferro</strong> contribuisce alla normale funzione cognitiva. Anche lo <strong>zinco</strong> contribuisce alla normale funzione cognitiva.</span>
+                            <span class="lang-es">El <strong>hierro</strong> contribuye a la función cognitiva normal. También el <strong>zinc</strong> contribuye a la función cognitiva normal.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 EFSA: Antioxidante (Con imagen tarjeta3) -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in delay-200 border border-gray-100">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="tarjeta3.png" alt="Sostenibilità" class="w-full h-full object-cover object-center">
+                        <div class="absolute bottom-4 left-4 bg-white/95 text-navy text-xs font-bold px-4 py-2 rounded-lg shadow-sm uppercase tracking-wider flex items-center gap-2">
+                            <span class="text-gold">🛡️</span> <span class="lang-it">Protezione</span><span class="lang-es">Protección</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif text-navy mb-4">
+                            <span class="lang-it">Protezione antiossidante</span><span class="lang-es">Protección antioxidante</span>
+                        </h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            <span class="lang-it">Il <strong>manganese</strong> e il <strong>rame</strong> contribuiscono alla protezione delle cellule dallo stress ossidativo. Arricchito dalle <em>antocianine</em> del cacao.</span>
+                            <span class="lang-es">El <strong>manganeso</strong> y el <strong>cobre</strong> contribuyen a la protección de las células frente al daño oxidativo. Enriquecido por <em>antocianinas</em> del cacao.</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BLOCCO: PER CHI È IDEALE -->
+            <div class="max-w-6xl mx-auto mt-32 text-center fade-in">
+                <h3 class="text-3xl font-serif text-navy mb-12">
+                    <span class="lang-it">Per chi è ideale la nostra miscela?</span>
+                    <span class="lang-es">¿Para quién es ideal nuestra mezcla?</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white rounded-2xl p-10 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="premium-icon mx-auto mb-6 bg-cream w-16 h-16 rounded-full flex items-center justify-center border border-gold/20">
+                            <!-- SVG Valigetta -->
+                            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                        </div>
+                        <h4 class="font-serif text-xl text-navy mb-3"><span class="lang-it">Professionisti</span><span class="lang-es">Profesionales</span></h4>
+                        <p class="text-sm font-light text-gray-600 leading-relaxed">
+                            <span class="lang-it">Per una pausa rigenerante e focalizzata durante le giornate di lavoro intense.</span>
+                            <span class="lang-es">Para una pausa regeneradora y enfocada durante los días de trabajo intensos.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-10 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="premium-icon mx-auto mb-6 bg-cream w-16 h-16 rounded-full flex items-center justify-center border border-gold/20">
+                            <!-- SVG Libro -->
+                            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20V4H6.5A2.5 2.5 0 004 6.5v13z"/></svg>
+                        </div>
+                        <h4 class="font-serif text-xl text-navy mb-3"><span class="lang-it">Studenti</span><span class="lang-es">Estudiantes</span></h4>
+                        <p class="text-sm font-light text-gray-600 leading-relaxed">
+                            <span class="lang-it">Un'alternativa gustosa e naturale per accompagnare le lunghe sessioni di studio.</span>
+                            <span class="lang-es">Una alternativa sabrosa y natural para acompañar las largas sesiones de estudio.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-10 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="premium-icon mx-auto mb-6 bg-cream w-16 h-16 rounded-full flex items-center justify-center border border-gold/20">
+                            <!-- SVG Foglia/Attivo -->
+                            <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        </div>
+                        <h4 class="font-serif text-xl text-navy mb-3"><span class="lang-it">Stile di vita attivo</span><span class="lang-es">Estilo de vida activo</span></h4>
+                        <p class="text-sm font-light text-gray-600 leading-relaxed">
+                            <span class="lang-it">Per chi cerca un'integrazione alimentare a base vegetale per sostenere il proprio ritmo.</span>
+                            <span class="lang-es">Para quienes buscan un complemento alimenticio a base vegetal para sostener su ritmo.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 10 MODI, 10 MOMENTI (CAROSELLO CON FONDO RITUAL.PNG VISIBILE) -->
+    <section class="bg-ritual text-white py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 fade-in relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6">
+                <div class="md:w-2/3">
+                    <span class="text-gold text-sm tracking-widest uppercase mb-2 block font-bold drop-shadow-md">
+                        <span class="lang-it">Ricettario Digitale</span><span class="lang-es">Recetario Digital</span>
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-serif mb-6 drop-shadow-lg">10 Modi, 10 Momenti</h2>
+                    <p class="text-gray-200 font-light text-lg leading-relaxed drop-shadow-md">
+                        <span class="lang-it">Ogni confezione contiene circa 10 preparazioni. Per questo abbiamo trasformato ogni porzione in un momento diverso della giornata: dalla colazione alla pausa in ufficio. Cambia solo il modo in cui scegli di gustarla.</span>
+                        <span class="lang-es">Cada empaque contiene cerca de 10 preparaciones. Por eso transformamos cada porción en un momento distinto del día: desde el desayuno hasta la pausa en la oficina. Solo cambia cómo eliges disfrutarla.</span>
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 text-gold text-sm font-bold uppercase tracking-widest hidden md:flex border border-gold/50 rounded-full px-6 py-3 bg-navy/60 backdrop-blur-md shadow-lg">
+                    <span class="animate-pulse text-xl">⟵</span> 
+                    <span class="lang-it">Scorri per scoprire</span><span class="lang-es">Desliza para descubrir</span> 
+                    <span class="animate-pulse text-xl">⟶</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative z-10 flex overflow-x-auto gap-6 px-6 pb-12 custom-scroll snap-x snap-mandatory fade-in delay-200">
+            
+            <!-- Card 1: Risveglio Andino -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card1.png" alt="Il Risveglio Andino" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider"><span class="lang-it">Mattina</span><span class="lang-es">Mañana</span></span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Il Risveglio Andino</span><span class="lang-es">El Despertar Andino</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Ideale per iniziare la giornata con una bevanda calda e avvolgente.</span><span class="lang-es">Ideal para empezar el día con una bebida caliente y envolvente.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Scalda 200 ml di latte/bevanda.</span><span class="lang-es">Calienta 200 ml de leche/bebida.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi 10 g di miscela.</span><span class="lang-es">Añade 10 g de mezcla.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola bene.</span><span class="lang-es">Mezcla bien.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: completa con una leggera spolverata di cacao.</span><span class="lang-es">Consejo: completa con una ligera espolvoreada de cacao.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 2: Colazione Andina -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card4.png" alt="Colazione Andina" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider"><span class="lang-it">Colazione</span><span class="lang-es">Desayuno</span></span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Colazione Andina</span><span class="lang-es">Desayuno Andino</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Perfetta con avena, porridge o bowl calde: la cremosità aiuta a integrare il gusto.</span><span class="lang-es">Perfecta con avena, porridge o bowls calientes: la cremosidad ayuda a integrar el gusto.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Prepara la tua avena o porridge.</span><span class="lang-es">Prepara tu avena o porridge.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi 10 g di miscela.</span><span class="lang-es">Añade 10 g de mezcla.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola per integrare.</span><span class="lang-es">Mezcla para integrar.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: completa con banana, frutta secca o un tocco di miele.</span><span class="lang-es">Consejo: completa con plátano, frutos secos o un toque de miel.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 3: Pausa Ufficio -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card2.png" alt="Pausa Ufficio" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider"><span class="lang-it">Lavoro</span><span class="lang-es">Trabajo</span></span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Pausa Ufficio</span><span class="lang-es">Pausa en la Oficina</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Una tazza semplice da preparare durante la giornata lavorativa.</span><span class="lang-es">Una taza simple de preparar durante la jornada laboral.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Prepara un latte caldo.</span><span class="lang-es">Prepara una leche caliente.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi 10 g di miscela.</span><span class="lang-es">Añade 10 g de mezcla.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola fino a omogeneità.</span><span class="lang-es">Mezcla hasta que esté homogéneo.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: servilo in una mug o tazza termica.</span><span class="lang-es">Consejo: sírvelo en un mug o taza térmica.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 4: Studio Soft -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card3.png" alt="Studio Soft" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider"><span class="lang-it">Studio</span><span class="lang-es">Estudio</span></span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Studio Soft</span><span class="lang-es">Estudio Suave</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Un rituale caldo e piacevole per accompagnare le ore di lettura.</span><span class="lang-es">Un ritual cálido y agradable para acompañar las hours de lectura.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Sciogli 10 g di miscela in 200 ml.</span><span class="lang-es">Disuelve 10 g de mezcla en 200 ml.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Servi caldo o tiepido.</span><span class="lang-es">Sirve caliente o tibio.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola bene prima di bere.</span><span class="lang-es">Mezcla bien antes de beber.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: abbinalo a una pausa breve e senza fretta.</span><span class="lang-es">Consejo: acompáñalo con una pausa breve y sin prisas.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 5: Cappuccino Andino -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card7.png" alt="Cappuccino Andino" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider"><span class="lang-it">Caffè</span><span class="lang-es">Café</span></span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3">Cappuccino Andino</h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Una versione cremosa con espresso, latte caldo e cacao peruviano.</span><span class="lang-es">Una versión cremosa con espresso, leche caliente y cacao peruano.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Prepara 1 espresso.</span><span class="lang-es">Prepara 1 espresso.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi 10 g di miscela.</span><span class="lang-es">Añade 10 g de mezcla.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Completa con latte caldo e schiuma.</span><span class="lang-es">Completa con leche caliente y espuma.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: spolverata di cacao o cannella.</span><span class="lang-es">Consejo: espolvoreada de cacao o canela.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 6: Crema di Yogurt Andina -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card5.png" alt="Crema di Yogurt" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider">Snack</span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Crema di Yogurt Andina</span><span class="lang-es">Crema de Yogur Andina</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Una merenda cremosa che unisce yogurt, frutta e miscela.</span><span class="lang-es">Una merienda cremosa que une yogur, fruta y la mezcla.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola 10 g con yogurt naturale.</span><span class="lang-es">Mezcla 10 g con yogur natural.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi banana o granola.</span><span class="lang-es">Añade plátano o granola.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Completa con polvere di cacao.</span><span class="lang-es">Completa con polvo de cacao.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: aggiungi frutta dolce per un gusto morbido.</span><span class="lang-es">Consejo: añade fruta dulce para un sabor más suave.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 7: Sera Calda -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card6.png" alt="Sera Calda" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider"><span class="lang-it">Sera</span><span class="lang-es">Noche</span></span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Sera Calda</span><span class="lang-es">Noche Cálida</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Una tazza calda dal gusto intenso di cacao per il relax.</span><span class="lang-es">Una taza caliente con sabor intenso a cacao para el relax.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Scalda 200 ml di latte/bevanda.</span><span class="lang-es">Calienta 200 ml de leche/bebida.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi 10 g di miscela.</span><span class="lang-es">Añade 10 g de mezcla.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola lentamente.</span><span class="lang-es">Mezcla lentamente.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: servila in una tazza grande e bevila calda.</span><span class="lang-es">Consejo: sírvela en una taza grande y bébela caliente.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 8: Smoothie Banana -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card8.png" alt="Smoothie" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider">Weekend</span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3">Smoothie Banana e Cacao</h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Una preparazione fredda e cremosa, per un gusto piacevole.</span><span class="lang-es">Una preparación fría y cremosa, para un sabor agradable.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Frulla 10 g di miscela con banana.</span><span class="lang-es">Licúa 10 g de mezcla con plátano.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi 200 ml di latte o vegetale.</span><span class="lang-es">Añade 200 ml de leche o vegetal.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Servi freddo con cacao in superficie.</span><span class="lang-es">Sirve frío con cacao en la superficie.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: usa banana matura per un gusto più dolce.</span><span class="lang-es">Consejo: usa plátano maduro para un sabor más dulce.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 9: Assaggio Express -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card9.png" alt="Assaggio Express" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider">Fast</span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Assaggio Express</span><span class="lang-es">Degustación Express</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Pensato per scoprire il gusto del prodotto in una piccola porzione.</span><span class="lang-es">Pensado para descubrir el sabor en una pequeña porción.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Usa 10 g in una tazza piccola.</span><span class="lang-es">Usa 10 g en una taza pequeña.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi poco latte caldo.</span><span class="lang-es">Añade poca leche caliente.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola bene e servi subito.</span><span class="lang-es">Mezcla bien y sirve de inmediato.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: ideale per sampling o degustazioni.</span><span class="lang-es">Consejo: ideal para sampling o degustaciones.</span></div>
+                </div>
+            </div>
+
+            <!-- Card 10: Tazzina -->
+            <div class="flex-none w-80 md:w-[22rem] bg-white text-navy rounded-2xl overflow-hidden shadow-2xl snap-start border border-white/10">
+                <img src="card10.png" alt="Tazzina delle Ande" class="w-full h-56 object-cover">
+                <div class="p-8">
+                    <span class="text-xs font-bold bg-gold/10 text-gold px-3 py-1 rounded-md uppercase tracking-wider">Premium</span>
+                    <h3 class="text-2xl font-serif mt-4 mb-3"><span class="lang-it">Tazzina delle Ande</span><span class="lang-es">Tacita de los Andes</span></h3>
+                    <p class="text-sm text-gray-600 mb-5 font-light h-10"><span class="lang-it">Una piccola tazza che valorizza l’identità andina del prodotto.</span><span class="lang-es">Una pequeña taza que valoriza la identidad andina del producto.</span></p>
+                    <ul class="text-sm text-navy font-light space-y-2 mb-6">
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Versa 10 g in una tazzina.</span><span class="lang-es">Vierte 10 g en una tacita.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Aggiungi latte caldo poco alla volta.</span><span class="lang-es">Añade leche caliente poco a poco.</span></span></li>
+                        <li class="flex gap-2"><span class="text-gold">•</span> <span><span class="lang-it">Mescola fino a crema.</span><span class="lang-es">Mezcla hasta ottenere crema.</span></span></li>
+                    </ul>
+                    <div class="bg-cream border border-gold/20 p-4 rounded-xl text-xs italic text-gray-700"><span class="lang-it">Consiglio: servila in una tazzina decorata o da collezione.</span><span class="lang-es">Consejo: sírvela en una tacita decorada o de colección.</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INGREDIENTI E SCHEDA TECNICA CIRCOLARE (DESIGN EDITORIALE) -->
+    <section class="bg-white py-24 px-6 relative border-t border-gray-100">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="text-center mb-16 fade-in">
+                <span class="text-gold text-sm tracking-widest uppercase mb-2 block font-bold">
+                    <span class="lang-it">Ingredienti ancestrali</span><span class="lang-es">Ingredientes ancestrales</span>
+                </span>
+                <h2 class="text-4xl md:text-5xl font-serif text-navy mb-8">
+                    <span class="lang-it">Un incontro di forza e sapore</span>
+                    <span class="lang-es">Un encuentro de fuerza y sabor</span>
+                </h2>
+                
+                <div class="inline-block bg-cardbg rounded-full px-6 py-3 md:px-8 md:py-4 shadow-sm border border-gray-200">
+                    <p class="text-navy font-bold text-xs md:text-sm flex flex-wrap justify-center items-center gap-2 md:gap-4 uppercase tracking-widest">
+                        <span>100 g</span> <span class="text-gold">|</span>
+                        <span><span class="lang-it">10 preparazioni circa</span><span class="lang-es">10 preparaciones aprox</span></span> <span class="text-gold">|</span>
+                        <span><span class="lang-it">Maca Gialla + Cacao</span><span class="lang-es">Maca Amarilla + Cacao</span></span> <span class="text-gold">|</span>
+                        <span><span class="lang-it">In polvere</span><span class="lang-es">En polvo</span></span> <span class="text-gold">|</span>
+                        <span><span class="lang-it">Busta richiudibile</span><span class="lang-es">Bolsa resellable</span></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 max-w-4xl mx-auto">
+                <!-- Maca -->
+                <div class="text-center fade-in">
+                    <div class="w-48 h-48 md:w-64 md:h-64 mx-auto rounded-full overflow-hidden border-4 border-cream shadow-xl mb-6 relative group">
+                        <img src="maca.png" alt="Maca" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif text-navy mb-3">
+                        <span class="lang-it">Maca Gialla</span><span class="lang-es">Maca Amarilla</span>
+                    </h3>
+                    <p class="text-sm md:text-base font-light text-gray-600 leading-relaxed px-4">
+                        <span class="lang-it">Radice andina coltivata da oltre 2000 anni nelle alture del Perù. Un superfood venerato per le sue proprietà.</span>
+                        <span class="lang-es">Raíz andina cultivada por más de 2000 años en las alturas del Perú. Un superfood venerado por sus propiedades.</span>
+                    </p>
+                </div>
+
+                <!-- Cacao -->
+                <div class="text-center fade-in delay-200">
+                    <div class="w-48 h-48 md:w-64 md:h-64 mx-auto rounded-full overflow-hidden border-4 border-cream shadow-xl mb-6 relative group">
+                        <img src="cacao.png" alt="Cacao" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif text-navy mb-3">Cacao</h3>
+                    <p class="text-sm md:text-base font-light text-gray-600 leading-relaxed px-4">
+                        <span class="lang-it">Seme ancestrale sudamericano, apprezzato fin dalle civiltà millenarie per il suo aroma inconfondibile e il valore nutrizionale.</span>
+                        <span class="lang-es">Semilla ancestral sudamericana, apreciada desde civilizaciones milenarias por su aroma inconfundible y valor nutricional.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOVE ACQUISTARE & PROMO -->
+    <section class="bg-ritual py-24 px-6 relative text-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+            
+            <div class="bg-navy/90 backdrop-blur-md p-10 rounded-3xl border border-white/10 shadow-2xl fade-in">
+                <h3 class="text-3xl font-serif mb-4"><span class="lang-it">Dove Acquistare?</span><span class="lang-es">¿Dónde Comprar?</span></h3>
+                <p class="text-lg font-light text-gold mb-8"><span class="lang-it">Prossimamente a Milano</span><span class="lang-es">Próximamente en Milán</span></p>
+                <p class="text-sm font-light opacity-90 mb-8 leading-relaxed">
+                    <span class="lang-it">Stiamo lavorando per portare la nostra miscela nei migliori supermercati, erboristerie e negozi selezionati del Nord Italia.</span>
+                    <span class="lang-es">Estamos trabajando para llevar nuestra mezcla a los mejores supermercados, herbolarios y tiendas seleccionadas del Norte de Italia.</span>
+                </p>
+                <hr class="border-white/10 mb-8">
+                <h4 class="font-bold mb-4"><span class="lang-it">Per negozi, caffetterie e distributori:</span><span class="lang-es">Para tiendas, cafeterías y distribuidores:</span></h4>
+                <a href="mailto:societalatinamilano@gmail.com" class="inline-block bg-white text-navy px-6 py-3 rounded-full font-bold text-sm hover:bg-gold hover:text-white transition-colors duration-300">
+                    <span class="lang-it">Sei un rivenditore? Contattaci</span>
+                    <span class="lang-es">¿Eres distribuidor? Contáctanos</span>
+                </a>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-10 rounded-3xl border border-gold/30 shadow-2xl fade-in delay-200 flex flex-col justify-center text-center">
+                <div class="text-5xl mb-4">🎁</div>
+                <h3 class="text-2xl font-serif mb-2"><span class="lang-it">Un regalo per il tuo primo rituale</span><span class="lang-es">Un regalo para tu primer ritual</span></h3>
+                <p class="text-sm font-light opacity-90 mb-6">
+                    <span class="lang-it">Usa questo codice al momento del lancio per ricevere uno sconto speciale.</span>
+                    <span class="lang-es">Usa este código en el momento de lanzamiento para recibir un descuento especial.</span>
+                </p>
+                <div class="bg-navy border border-gold text-gold text-2xl font-bold py-3 px-8 rounded-lg inline-block mx-auto mb-8 tracking-widest shadow-lg">
+                    ANDE10
+                </div>
+                <p class="text-lg italic font-serif opacity-90">
+                    "<span class="lang-it">E tu, quale dei 10 rituali proveresti per primo?</span><span class="lang-es">Y tú, ¿cuál de los 10 rituales probarías primero?</span>"
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER Y NORMATIVA LEGAL EUROPEA -->
+    <footer class="bg-[#0a1522] text-white py-16 px-6 border-t-[10px] border-gold">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center border-b border-white/10 pb-12">
+                <div class="flex justify-center md:justify-start">
+                    <img src="logo.png" alt="Società Latina" class="h-28 object-contain brightness-0 invert opacity-100">
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-xl font-light mb-2">V.le Umbria, 9, 20093</p>
+                    <p class="text-xl font-light">Cologno Monzese MI</p>
+                </div>
+                <div class="text-center md:text-left md:ml-auto">
+                    <h4 class="text-2xl font-bold mb-6 font-serif">Contact Us</h4>
+                    <p class="text-lg font-light mb-2">+39 371 422 2925</p>
+                    <p class="text-lg font-light mb-4">+39 347 095 2095</p>
+                    <p class="text-base font-light mb-8 opacity-90">societalatinamilano@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- Disclaimer Legal Normativo Europeo -->
+            <div class="pt-10 text-center text-[11px] md:text-xs text-gray-400 font-light max-w-5xl mx-auto space-y-4 leading-relaxed">
+                <p>
+                    <span class="lang-it"><strong>Società Latina</strong> commercializza questo prodotto in conformità alla <strong>Direttiva 2002/46/CE</strong> e al <strong>D.Lgs. 169/2004</strong> sugli integratori alimentari in Italia.</span>
+                    <span class="lang-es"><strong>Società Latina</strong> comercializa este producto en conformidad con la <strong>Directiva 2002/46/CE</strong> y el <strong>D.Lgs. 169/2004</strong> sobre complementos alimenticios en Italia.</span>
+                </p>
+                <p>
+                    <span class="lang-it">Questo prodotto è un <strong>integratore alimentare</strong> e non è un farmaco. Le informazioni fornite non sono destinate a diagnosticare, trattare, curare o prevenire alcuna malattia. Le dichiarazioni in etichetta sono formulate nel rigoroso rispetto del <strong>Regolamento (CE) 1924/2006</strong>. Si raccomanda di consumare il prodotto nell'ambito di una dieta varia ed equilibrata e di uno stile di vita sano.</span>
+                    <span class="lang-es">Este producto es un <strong>complemento alimenticio</strong> y no es un medicamento. La información proporcionada no está destinada a diagnosticar, tratar, curar o prevenir ninguna enfermedad. Las declaraciones en etiqueta se formulan en estricto respeto del <strong>Reglamento (CE) 1924/2006</strong>. Se recomienda consumir el producto dentro de una dieta variada y equilibrada y un estilo de vida saludable.</span>
+                </p>
+                <p class="mt-8 opacity-60 font-bold">© 2026 Società Latina Minimarket. Tutti i diritti riservati.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            const btnIt = document.getElementById('btn-it');
+            const btnEs = document.getElementById('btn-es');
+
+            if (lang === 'it') {
+                btnIt.classList.add('bg-navy', 'text-white');
+                btnIt.classList.remove('text-navy', 'hover:text-gold');
+                btnEs.classList.remove('bg-navy', 'text-white');
+                btnEs.classList.add('text-navy', 'hover:text-gold');
+            } else {
+                btnEs.classList.add('bg-navy', 'text-white');
+                btnEs.classList.remove('text-navy', 'hover:text-gold');
+                btnIt.classList.remove('bg-navy', 'text-white');
+                btnIt.classList.add('text-navy', 'hover:text-gold');
+            }
+        }
+    </script>
+</body>
+</html>
